@@ -5,7 +5,7 @@ const path = require("path");
 const authmiddleware = require("../middleware/authmiddleware");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images");
+    cb(null, "./public/images");
   },
   filename: (req, file, cb) => {
     cb(
@@ -15,11 +15,17 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
-const { createImage } = require("../controller/imageController");
+const {
+  createImage,
+  getUserProfile,
+  getAllUserImages,
+} = require("../controller/imageController");
 imageRouter.post(
   "/upload",
   authmiddleware,
   upload.single("avatar"),
   createImage
 );
+imageRouter.get("/profile", authmiddleware, getUserProfile);
+imageRouter.get("/", authmiddleware, getAllUserImages);
 module.exports = imageRouter;

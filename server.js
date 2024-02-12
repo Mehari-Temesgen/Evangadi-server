@@ -21,11 +21,15 @@ app.use("/api/questions", authmiddleware, questionRoute);
 const answerRouter = require("./routes/AnswerRoute");
 app.use("/api/answer", answerRouter);
 //
-app.use("/api/likes", require("./routes/likeRoutes"));
+const likeRoute = require("./routes/likeRoutes");
+app.use("/api/likes", likeRoute);
 //image middleware
 const imageRouter = require("./routes/imageRoutes");
-app.use("api/images", imageRouter);
-app.use("/api/all/images", express.static(path.join(__dirname, "/images")));
+app.use("/api/images", imageRouter);
+app.use(
+  "/api/all/images",
+  express.static(path.join(__dirname, "./public/images"))
+);
 async function start() {
   try {
     // const result = await connection.execute("select 'test' ");

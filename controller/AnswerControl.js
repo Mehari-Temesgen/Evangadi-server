@@ -3,7 +3,7 @@ const connection = require("../db/dbconfig");
 // const authmiddleware = require("../middleware/authmiddleware");
 const { StatusCodes } = require("http-status-codes");
 const postanswer = async (req, res) => {
-  const { answer } = req.body;
+  const { answer, image } = req.body;
   const questionid = req.params.questionid;
   const userid = req.user.userid;
   if (!answer) {
@@ -13,8 +13,8 @@ const postanswer = async (req, res) => {
   }
   try {
     await connection.query(
-      "INSERT INTO answers (userid,questionsid,answer) values(?,?,?)",
-      [userid, questionid, answer]
+      "INSERT INTO answers (userid,questionsid,answer,image) values(?,?,?)",
+      [userid, questionid, answer, image]
     );
 
     await connection.query(
