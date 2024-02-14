@@ -56,7 +56,7 @@ const login = async (req, res) => {
       "select userid,username,password from users where email=?",
       [email]
     );
-    console.log(user);
+    // console.log(user);
     // return res.json({ user: user });
     if (user.length == 0) {
       return res

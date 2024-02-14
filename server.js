@@ -4,7 +4,7 @@ const cors = require("cors");
 const { json } = require("body-parser");
 const path = require("path");
 const app = express();
-const port = 4000;
+const port = process.env.PORT;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(json());
@@ -30,6 +30,9 @@ app.use(
   "/api/all/images",
   express.static(path.join(__dirname, "./public/images"))
 );
+app.get("/", (req, res) => {
+  res.send("API is running....");
+});
 async function start() {
   try {
     // const result = await connection.execute("select 'test' ");
