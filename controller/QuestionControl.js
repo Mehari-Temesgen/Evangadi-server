@@ -18,6 +18,7 @@ const postquestion = async (req, res) => {
       "INSERT INTO questions (questionsid,userid,title,description) values(?,?,?,?)",
       [uniqueId, userid, title, description]
     );
+
     return res
       .status(StatusCodes.CREATED)
       .json({ message: "question posted successfully" });
