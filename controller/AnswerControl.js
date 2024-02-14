@@ -3,7 +3,7 @@ const connection = require("../db/dbconfig");
 // const authmiddleware = require("../middleware/authmiddleware");
 const { StatusCodes } = require("http-status-codes");
 const postanswer = async (req, res) => {
-  const { answer, image } = req.body;
+  const { answer } = req.body;
   const questionid = req.params.questionid;
   const userid = req.user.userid;
   if (!answer) {
