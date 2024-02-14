@@ -13,8 +13,8 @@ const postanswer = async (req, res) => {
   }
   try {
     await connection.query(
-      "INSERT INTO answers (userid,questionsid,answer,image) values(?,?,?)",
-      [userid, questionid, answer, image]
+      "INSERT INTO answers (userid,questionsid,answer) values(?,?,?)",
+      [userid, questionid, answer]
     );
 
     await connection.query(
