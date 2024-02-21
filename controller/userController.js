@@ -16,7 +16,7 @@ const register = async (req, res) => {
       "select userid,username from users where email=? or username=?",
       [email, username]
     );
-    // console.log(user);
+    // console.log(user[0].password);
     if (user.length > 0) {
       return res
         .status(StatusCodes.BAD_REQUEST)
@@ -41,7 +41,7 @@ const register = async (req, res) => {
     console.log(error.message);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ msg: "something wrong" });
+      .json({ msg: `something was wrong ${error.message}` });
   }
 };
 const login = async (req, res) => {
@@ -67,7 +67,7 @@ const login = async (req, res) => {
     if (!isMatch) {
       return res
         .status(StatusCodes.BAD_REQUEST)
-        .json({ msg: "invaliad credential" });
+        .json({ msg: "invaliad credential pas" });
     }
     //distruct username and user id used to signed
     const username = user[0].username;
